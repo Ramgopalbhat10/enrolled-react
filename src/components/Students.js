@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { fetchStudents } from "../helpers/StudentsHelper";
+import { Table } from "antd";
+import { fetchStudents, getColumns } from "../helpers/StudentsHelper";
 
 export default function Students() {
   const [students, setStudents] = useState([]);
@@ -16,17 +17,15 @@ export default function Students() {
       ) : (
         <h2>Students</h2>
       )}
-      <div className="students-list">
-        {students &&
-          students.length &&
-          students.map(student => (
-            <div className="student" key={student.id}>
-              <p>First Name: {student.firstName}</p>
-              <p>Last Name: {student.lastName}</p>
-              <p>Email: {student.email}</p>
-            </div>
-          ))}
-      </div>
+      {students && students.length && (
+        <Table
+          className="container"
+          dataSource={students}
+          columns={getColumns()}
+          pagination={false}
+          rowKey="studentId"
+        />
+      )}
     </>
   );
 }
