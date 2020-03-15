@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1, h2, h2, h4, p {
+  margin: 0;
+}
+
+#root {
+  width: 70%;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.students-list {
+  display: flex;
+  justify-content: space-between;
+}
+.student {
+  text-align: left;
+}
