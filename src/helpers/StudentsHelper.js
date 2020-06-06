@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag } from "antd";
+import { Tag, Avatar } from "antd";
 
 export const fetchStudents = async () => {
   try {
@@ -13,6 +13,15 @@ export const fetchStudents = async () => {
 
 export const getColumns = () => {
   const columns = [
+    {
+      title: '',
+      key: 'avatar',
+      render: (text, student) => (
+        <Avatar size='large'>
+          {`${student.firstName.charAt(0).toUpperCase()}${student.lastName.charAt(0).toUpperCase()}`}
+        </Avatar>
+      )
+    },
     {
       title: 'Student Id',
       dataIndex: 'id',
