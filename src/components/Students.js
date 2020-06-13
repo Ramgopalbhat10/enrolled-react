@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Table, Spin } from "antd";
-import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { fetchStudents, getColumns } from "../helpers/StudentsHelper";
-import Container from './Container';
+import Container from "./Container";
+import { Table, Button, Modal } from "../utils";
+import useModal from "../hooks/useModal";
 
 const loadingIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 export default function Students() {
   const [students, setStudents] = useState([]);
-  const [isFetching, setIsFetching] = useState(true)
+  const [isFetching, setIsFetching] = useState(true);
+  const [isOpen, { openModal, closeModal }] = useModal(false);
 
   useEffect(() => {
-    fetchStudents().then(students => {
+    fetchStudents().then((students) => {
       setStudents(students);
       setIsFetching(false);
     });
@@ -20,7 +23,7 @@ export default function Students() {
   return (
     <>
       {isFetching ? (
-        <Spin indicator={loadingIcon}/>
+        <Spin indicator={loadingIcon} />
       ) : (
         <>
           {!students && students.length ? (
@@ -30,17 +33,20 @@ export default function Students() {
           )}
           {students && students.length && (
             <Container>
-              <Table
-                dataSource={students}
-                columns={getColumns()}
-                pagination={false}
-                rowKey="id"
+              <Table dataSource={students} columns={getColumns} />
+              <Button
+                text="Add new student +"
+                type="primary"
+                style={{ marginTop: "10px", padding: "10px" }}
+                onClickHandle={openModal}
               />
+              <Modal isOpen={isOpen} closeModal={closeModal}>
+                <p>Inside Modal</p>
+              </Modal>
             </Container>
           )}
         </>
       )}
-
     </>
   );
 }

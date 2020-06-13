@@ -25,27 +25,32 @@ export const getColumns = () => {
     {
       title: 'Student Id',
       dataIndex: 'id',
-      key: 'id'
+      key: 'id',
+      responsive: ['md'],
     },
     {
       title: 'First Name',
       dataIndex: 'firstName',
       key: 'firstName',
+      responsive: ['md'],
     },
     {
       title: 'Last Name',
       dataIndex: 'lastName',
-      key: 'lastName'
+      key: 'lastName',
+      responsive: ['md'],
     },
     {
       title: 'Email',
       dataIndex: 'email',
-      key: 'email'
+      key: 'email',
+      responsive: ['md'],
     },
     {
       title: 'Gender',
       dataIndex: 'gender',
       key: 'gender',
+      responsive: ['md'],
       render: gender => (
         <span>
           <Tag color={gender === 'MALE' ? 'geekblue' : 'green'} key={gender}>
