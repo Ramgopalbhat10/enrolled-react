@@ -3,6 +3,7 @@ import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { fetchStudents, getColumns } from "../helpers/StudentsHelper";
 import Container from "./Container";
+import AddStudentForm from "../forms/AddStudentForm";
 import { Table, Button, Modal } from "../utils";
 import useModal from "../hooks/useModal";
 
@@ -42,6 +43,7 @@ export default function Students() {
               />
               <Modal isOpen={isOpen} closeModal={closeModal}>
                 <p>Inside Modal</p>
+                <AddStudentForm />
               </Modal>
             </Container>
           )}
